@@ -1,0 +1,136 @@
+/* ETH Cali design tokens — v1.0
+   THE source of truth. Promoted out of ethcaliorg/css/tokens.css, which had drifted
+   from branding_repo/tokens.css with nothing enforcing sync. Both the site and the
+   wallet app now consume this file; neither keeps a copy.
+
+   Never use a raw hex value in a component. If a token is missing, add it here first.
+
+   Consumers get the same values twice, deliberately: as CSS custom properties for
+   hand-written CSS, and through tailwind-preset.js for utility classes. The preset
+   references these vars rather than repeating the hex, so there is exactly one place
+   a colour is defined. */
+
+/* ── Sarun Pro ──────────────────────────────────────────────────────────────
+   Self-hosted woff2, converted from the .ttf originals. The family has no 600:
+   it steps Medium 500 → Bold 700, so any spec calling for 600 resolves to Bold.
+   font-display:swap so text is readable before the face lands — these are ~70KB
+   each and both properties are content-first.
+
+   Paths are relative to this file, so they resolve wherever a bundler emits it.
+   A consumer that copies tokens.css without fonts/ gets the fallback stack, not
+   a 404 cascade.                                                             */
+@font-face {
+  font-family: "Sarun Pro";
+  src: url("./fonts/SarunPro-Book.woff2") format("woff2");
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Sarun Pro";
+  src: url("./fonts/SarunPro-Regular.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Sarun Pro";
+  src: url("./fonts/SarunPro-Medium.woff2") format("woff2");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Sarun Pro";
+  src: url("./fonts/SarunPro-Bold.woff2") format("woff2");
+  font-weight: 600 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Sarun Pro";
+  src: url("./fonts/SarunPro-Black.woff2") format("woff2");
+  font-weight: 800 900; font-style: normal; font-display: swap;
+}
+
+/* ── Colour primitives ──────────────────────────────────────────────────────
+   Every solid colour is defined exactly once, here, as space-separated sRGB
+   channels. That is the one form that serves both consumers: hand-written CSS
+   reads the derived `--token` below, and tailwind-preset.js wraps the triple in
+   `rgb(... / <alpha-value>)` so `bg-surface-slab/50` actually produces 50%
+   opacity instead of silently producing none.
+
+   Add a colour by adding its triple here and its derived var below. Never type
+   a hex twice, and never hand a bare hex to the Tailwind preset.             */
+:root {
+  /* brand */
+  --eth-blue-rgb: 43 35 239;
+  --eth-blue-lift-rgb: 79 73 255;
+  --eth-blue-deep-rgb: 24 17 166;
+  --eth-blue-text-rgb: 154 150 255;  /* link/data blue, AA on dark surfaces */
+  --on-brand-rgb: 255 255 255;       /* the only text colour that sits on --eth-blue */
+
+  /* surfaces (dark-first) */
+  --surface-void-rgb: 6 6 11;        /* page */
+  --surface-slab-rgb: 12 13 22;      /* card */
+  --surface-inset-rgb: 19 22 36;     /* nested / input bg */
+  --surface-ridge-rgb: 30 34 51;     /* raised control */
+  --surface-paper-rgb: 242 243 247;  /* print / QR quiet zone */
+
+  /* text */
+  --text-primary-rgb: 242 243 247;
+  --text-secondary-rgb: 201 204 216;
+  --text-muted-rgb: 154 157 174;
+  --text-faint-rgb: 95 99 119;
+
+  /* signals — never decorative. Green means something succeeded on-chain; if a
+     thing is merely nice, it is not --signal-confirmed. */
+  --signal-confirmed-rgb: 0 214 143;
+  --signal-pending-rgb: 255 176 32;
+  --signal-reverted-rgb: 255 77 77;
+
+  /* ── Derived colours ──────────────────────────────────────────────────────
+     Use these in hand-written CSS. They are the triples above, nothing more. */
+  --eth-blue: rgb(var(--eth-blue-rgb));
+  --eth-blue-lift: rgb(var(--eth-blue-lift-rgb));
+  --eth-blue-deep: rgb(var(--eth-blue-deep-rgb));
+  --eth-blue-text: rgb(var(--eth-blue-text-rgb));
+  --on-brand: rgb(var(--on-brand-rgb));
+
+  --surface-void: rgb(var(--surface-void-rgb));
+  --surface-slab: rgb(var(--surface-slab-rgb));
+  --surface-inset: rgb(var(--surface-inset-rgb));
+  --surface-ridge: rgb(var(--surface-ridge-rgb));
+  --surface-paper: rgb(var(--surface-paper-rgb));
+
+  --text-primary: rgb(var(--text-primary-rgb));
+  --text-secondary: rgb(var(--text-secondary-rgb));
+  --text-muted: rgb(var(--text-muted-rgb));
+  --text-faint: rgb(var(--text-faint-rgb));
+
+  --signal-confirmed: rgb(var(--signal-confirmed-rgb));
+  --signal-pending: rgb(var(--signal-pending-rgb));
+  --signal-reverted: rgb(var(--signal-reverted-rgb));
+
+  /* ── Fixed-alpha colours ──────────────────────────────────────────────────
+     These carry their transparency as part of their meaning — a wash is a wash
+     at 14%, not "eth-blue at whatever the caller chose". They take no opacity
+     modifier and need no triple. */
+  --eth-blue-wash: rgb(var(--eth-blue-rgb) / 0.14);
+  --eth-blue-ring: rgb(var(--eth-blue-rgb) / 0.18);
+  --line-hairline: rgb(255 255 255 / 0.09);
+  --line-strong: rgb(255 255 255 / 0.16);
+  --line-brand: rgb(var(--eth-blue-rgb) / 0.45);
+
+  /* type */
+  --font-sans: "Sarun Pro", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* form */
+  --radius-chip: 8px;
+  --radius-control: 14px;
+  --radius-card: 20px;
+  --radius-full: 999px;
+  --tap-min: 48px;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --t-fast: 120ms;
+  --t-base: 200ms;
+  --t-slow: 280ms;
+
+  /* layout */
+  --page-max: 1200px;
+  --gutter: 24px;
+  --nav-h: 60px;
+}

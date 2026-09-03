@@ -1,0 +1,19 @@
+{
+  "name": "@ethcali/tokens",
+  "version": "1.0.0",
+  "description": "ETH Cali design tokens — the single source of truth for both ethcali.org and the wallet app",
+  "license": "MIT",
+  "files": [
+    "tokens.css",
+    "tailwind-preset.js",
+    "fonts"
+  ],
+  "exports": {
+    "./tokens.css": "./tokens.css",
+    "./tailwind-preset": "./tailwind-preset.js",
+    "./fonts/*": "./fonts/*"
+  },
+  "sideEffects": [
+    "*.css"
+  ]
+}
