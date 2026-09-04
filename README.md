@@ -1,4 +1,8 @@
-# @ethcali/tokens
+# @ethcali/design-tokens
+
+**Design** tokens — colours, typography, spacing, radii. This package contains no
+smart contracts, no token addresses and no ABIs. If you are looking for ERC-20s,
+you want `scs-ethcali`.
 
 The ETH Cali design system as data. **This is the source of truth** — both
 `ethcali-web` (the site) and `wallet_ethcali` (the dApp) consume it, and neither keeps
@@ -12,7 +16,7 @@ truth" file never got.
 ## Install
 
 ```bash
-npm i "@ethcali/tokens@github:ETHcali/tokens#v1"
+npm i "@ethcali/design-tokens@github:ETHcali/design-tokens#v1"
 ```
 
 The workspace is independent repos with no root `package.json`, so this installs from
@@ -26,7 +30,7 @@ lands in a consumer without a deliberate bump.
 
 ```ts
 // pages/_app.tsx  (or app/layout.tsx)
-import '@ethcali/tokens/tokens.css';
+import '@ethcali/design-tokens/tokens.css';
 ```
 
 **2. Extend the Tailwind config.**
@@ -34,7 +38,7 @@ import '@ethcali/tokens/tokens.css';
 ```js
 // tailwind.config.js
 module.exports = {
-  presets: [require('@ethcali/tokens/tailwind-preset')],
+  presets: [require('@ethcali/design-tokens/tailwind-preset')],
   content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
 };
 ```

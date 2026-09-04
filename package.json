@@ -1,7 +1,7 @@
 {
-  "name": "@ethcali/tokens",
+  "name": "@ethcali/design-tokens",
   "version": "1.0.0",
-  "description": "ETH Cali design tokens — the single source of truth for both ethcali.org and the wallet app",
+  "description": "ETH Cali DESIGN tokens — colours, type, spacing. Not ERC-20s; this package contains no contracts and no addresses.",
   "license": "MIT",
   "files": [
     "tokens.css",
@@ -15,5 +15,9 @@
   },
   "sideEffects": [
     "*.css"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ETHcali/design-tokens.git"
+  }
 }
